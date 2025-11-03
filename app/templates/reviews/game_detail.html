@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}{{ game.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ game.title }}</h1>
+<p>Gatunek: {{ game.genre }}</p>
+<p>Rok wydania: {{ game.release_year }}</p>
+
+<h2>Recenzje:</h2>
+<ul>
+  {% for review in reviews %}
+    <li><strong>{{ review.author.username }}</strong> ({{ review.rating }}/10): {{ review.content }}</li>
+  {% empty %}
+    <p>Brak recenzji.</p>
+  {% endfor %}
+</ul>
+
+{% if user.is_authenticated %}
+<h3>Dodaj swoją recenzję</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Dodaj recenzję</button>
+</form>
+{% else %}
+<p><a href="{% url 'login' %}?next={{ request.path }}">Zaloguj się</a>, aby dodać recenzję.</p>
+{% endif %}
+{% endblock %}

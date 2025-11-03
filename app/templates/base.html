@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Agregator Recenzji Gier{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        nav { background-color: #333; color: white; padding: 1em; }
+        nav a { color: white; margin-right: 1em; text-decoration: none; }
+        nav a:hover { text-decoration: underline; }
+        .container { padding: 2em; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'game_list' %}">Strona główna</a>
+        {% if user.is_authenticated %}
+            <span>Witaj, {{ user.username }}</span>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Wyloguj</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Zaloguj</a>
+            <a href="{% url 'register' %}">Zarejestruj się</a>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>
