@@ -7,7 +7,8 @@ from .forms import ReviewForm
 
 def game_list(request):
     games = Game.objects.all()
-    return render(request, 'reviews/game_list.html', {'games': games})
+    reviews = Review.objects.order_by('-created_at')[:5]
+    return render(request, 'reviews/game_list.html', {'games': games, 'reviews':reviews})
 
 def game_detail(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
@@ -25,6 +26,10 @@ def game_detail(request, game_id):
         form = ReviewForm()
     
     return render(request, 'reviews/game_detail.html', {'game': game, 'reviews': reviews, 'form': form})
+
+def review_detail(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    return render(request, "reviews/review_detail.html", {"review": review})
 
 def register(request):
     if request.method == 'POST':
