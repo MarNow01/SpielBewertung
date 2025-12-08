@@ -3,18 +3,7 @@
 {% block title %}Recenzja: {{ review.game.title }}{% endblock %}
 
 {% block content %}
-    <style>
-        h1{
-            text-align: center;
-        }
-        .review-detail{
-        max-width: 800px;
-        margin: 2em auto;
-        padding: 1em;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        }
-    </style>
+
     <h1>{{ review.game.title }}</h1>
     <div class="review-detail">
         <p><strong>Autor:</strong> {{ review.author }} | <strong>Data:</strong> {{ review.created_at|date:"d.m.Y H:i" }}</p>

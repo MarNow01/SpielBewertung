@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/master.css' %}">
     <meta charset="UTF-8">
     <title>{% block title %}Agregator Recenzji Gier{% endblock %}</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        nav { background-color: #333; color: white; padding: 1em; display: flex; justify-content: space-between;}
-        nav a { color: white; margin-right: 1em; text-decoration: none; }
-        nav a:hover { text-decoration: underline; }
-        .container { padding: 2em; }
-    </style>
 </head>
 <body>
     <nav>
         <div>
-            <a href="{% url 'game_list' %}">Strona główna</a>
+            <a href="{% url 'mainpage' %}">Strona główna</a>
         </div>
         <div>
         {% if user.is_authenticated %}

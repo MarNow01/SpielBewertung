@@ -1,7 +1,19 @@
-<h2>Rejestracja</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Utwórz konto</button>
-</form>
-<a href="{% url 'login' %}">Masz już konto? Zaloguj się</a>
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/master.css' %}">
+
+<div class="auth-wrapper">
+    <h2>Rejestracja</h2>
+
+    <div class="auth-card">
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="auth-btn">Utwórz konto</button>
+        </form>
+
+        <p class="auth-link">
+            <a href="{% url 'login' %}">Masz już konto? Zaloguj się</a><br>
+            <a href="{% url 'mainpage' %}">Kontynuuj jako gość</a>
+        </p>
+    </div>
+</div>
