@@ -7,13 +7,13 @@
 <div class="home">
 
     <div class="home-banner">
-        <img src="{% static 'images/baner.jpg' %}" alt="Baner strony">
+        <img src="{% static 'images/baner1_flat.png' %}" alt="Baner strony">
     </div>
 
     <div class="home-sections">
 
         <!-- Lista gier -->
-        <div class="card">
+        <div class="card" id="mainpage-card1">
             <h2>Gry w serwisie</h2>
             <ul class="list">
                 {% for game in games %}
@@ -29,7 +29,7 @@
         </div>
 
         <!-- Najnowsze recenzje -->
-        <div class="card">
+        <div class="card" id="mainpage-card2">
             <h2>Najnowsze recenzje</h2>
             <ul class="list">
                 {% for review in reviews %}

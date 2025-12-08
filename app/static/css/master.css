@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #181a1f;
 }
 
 h1 {
@@ -12,7 +13,7 @@ h2 {
     margin-top: 0;
     text-align: center;
     font-family: 'Segoe UI', sans-serif;
-    color: #333;
+    color: #c6c6c6;
 }
 
 /* ============================= */
@@ -20,21 +21,54 @@ h2 {
 /* ============================= */
 
 nav {
-    background-color: #333;
-    color: white;
-    padding: 1em;
+    background: linear-gradient(90deg, #2e59b4, #a63f80, #eb5b51);
+    color: #171c23;
+    padding: 4px 20px;
     display: flex;
     justify-content: space-between;
+    font-size: 1.5em;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav button {
+    border-radius: 5px;
+    color: #e05657;
+    background-color: #171c23;
+    border: none;
+    padding: 5px 10px;
+    font-size: 1.1em;
+    margin-left: 10px;
+}
+
+nav button:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+nav div a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
 }
 
 nav a {
-    color: white;
+    color: #171c23;
     margin-right: 1em;
     text-decoration: none;
+    display: block;
+    margin: 0;
+    padding: 0;
 }
 
-nav a:hover {
-    text-decoration: underline;
+nav a img {
+    height: 60px;
+    display: inline;
 }
 
 /* ============================= */
@@ -84,11 +118,14 @@ nav a:hover {
 }
 
 .card {
-    background: #ffffff;
+    background: #2f2f30;
+    color: #c6c6c6;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+
 
 /* ============================= */
 /*             LISTS             */

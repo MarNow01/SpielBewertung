@@ -9,7 +9,7 @@
 <body>
     <nav>
         <div>
-            <a href="{% url 'mainpage' %}">Strona główna</a>
+            <a href="{% url 'mainpage' %}"><img src = "{% static '/images/logo.png' %}"></a>
         </div>
         <div>
         {% if user.is_authenticated %}
