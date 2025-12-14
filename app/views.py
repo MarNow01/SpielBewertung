@@ -5,10 +5,33 @@ from django.contrib.auth.decorators import login_required
 from .models import Game, Review
 from .forms import ReviewForm
 
-def game_list(request):
+def mainpage(request):
     games = Game.objects.all()
     reviews = Review.objects.order_by('-created_at')[:5]
-    return render(request, 'reviews/game_list.html', {'games': games, 'reviews':reviews})
+    return render(request, 'reviews/mainpage.html', {'games': games, 'reviews':reviews})
+
+def game_list(request):
+    games = Game.objects.all()
+
+    title = request.GET.get("title")
+    genre = request.GET.get("genre")
+    year = request.GET.get("year")
+
+    if title:
+        games = games.filter(title__icontains=title)
+
+    if genre:
+        games = games.filter(genre__icontains=genre)
+
+    if year:
+        games = games.filter(release_year=year)
+
+    context = {
+        "games": games,
+        "genres": Game.objects.values_list("genre", flat=True).distinct(),
+    }
+
+    return render(request, "games/game_list.html", context)
 
 def game_detail(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
@@ -25,7 +48,7 @@ def game_detail(request, game_id):
     else:
         form = ReviewForm()
     
-    return render(request, 'reviews/game_detail.html', {'game': game, 'reviews': reviews, 'form': form})
+    return render(request, 'games/game_detail.html', {'game': game, 'reviews': reviews, 'form': form})
 
 def review_detail(request, review_id):
     review = get_object_or_404(Review, pk=review_id)

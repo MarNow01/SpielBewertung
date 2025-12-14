@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Lista gier{% endblock %}
+
+{% block content %}
+<div class="home">
+
+    <!-- pasek z filtrami -->
+    <div class="card filters-bar">
+        <form method="get" class="filters-form">
+            <input
+                type="text"
+                name="title"
+                placeholder="Szukaj po tytule"
+                value="{{ request.GET.title }}"
+            >
+
+            <select name="genre">
+                <option value="">Wszystkie gatunki</option>
+                {% for g in genres %}
+                    <option value="{{ g }}" {% if request.GET.genre == g %}selected{% endif %}>
+                        {{ g }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <input
+                type="number"
+                name="year"
+                placeholder="Rok wydania"
+                value="{{ request.GET.year }}"
+            >
+
+            <button type="submit">Filtruj</button>
+        </form>
+    </div>
+
+    <!-- Lista gier -->
+    <div class="gamelist-sections">
+        <div class="card">
+            <h2>Lista gier</h2>
+
+            <ul class="list">
+                {% for game in games %}
+                    <li class="list-item">
+                        <a href="{% url 'game_detail' game_id=game.id %}">
+                            <strong>{{ game.title }}</strong>
+                            <br>
+                            <small>{{ game.genre }} | {{ game.release_year }}</small>
+                        </a>
+
+                        {% if game.description %}
+                            <p>{{ game.description|truncatechars:120 }}</p>
+                        {% endif %}
+                    </li>
+                {% empty %}
+                    <li class="list-item">Brak gier spełniających kryteria.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

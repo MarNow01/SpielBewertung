@@ -43,6 +43,7 @@ nav button {
     padding: 5px 10px;
     font-size: 1.1em;
     margin-left: 10px;
+    transition: all .2s;
 }
 
 nav button:hover {
@@ -54,7 +55,15 @@ nav div a {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+nav div a, nav div span{
+    margin-left: 20px;
+}
+
+nav div a:hover{
+    color: #000;
 }
 
 nav a {
@@ -143,12 +152,49 @@ nav a img {
 
 .list-item a {
     text-decoration: none;
-    color: #1b4db1;
+    color: #eb5b51;
 }
 
 .list-item a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
+
+
+/* ============================= */
+/*          FILTERS BAR          */
+/* ============================= */
+
+.filters-bar {
+    margin-bottom: 30px;
+}
+
+.filters-form {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filters-form input,
+.filters-form select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.filters-form button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    background: #1b4db1;
+    color: white;
+    cursor: pointer;
+}
+
+.filters-form button:hover {
+    background: #153d8c;
+}
+
 
 /* ============================= */
 /*        AUTHENTICATION         */
