@@ -16,11 +16,12 @@
                 value="{{ request.GET.title }}"
             >
 
-            <select name="genre">
+            <select name="genres">
                 <option value="">Wszystkie gatunki</option>
                 {% for g in genres %}
-                    <option value="{{ g }}" {% if request.GET.genre == g %}selected{% endif %}>
-                        {{ g }}
+                    <option value="{{ g.id }}"
+                        {% if request.GET.genre == g.id|stringformat:"s" %}selected{% endif %}>
+                        {{ g.name }}
                     </option>
                 {% endfor %}
             </select>
@@ -47,7 +48,12 @@
                         <a href="{% url 'game_detail' game_id=game.id %}">
                             <strong>{{ game.title }}</strong>
                             <br>
-                            <small>{{ game.genre }} | {{ game.release_year }}</small>
+                            <small>
+                                {% for genre in game.genres.all %}
+                                    {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                                | {{ game.release_year }}
+                            </small>
                         </a>
 
                         {% if game.description %}

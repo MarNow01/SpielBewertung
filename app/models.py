@@ -1,9 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+class Genre(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
 class Game(models.Model):
     title = models.CharField(max_length=200)
-    genre = models.CharField(max_length=100)
+    genres = models.ManyToManyField(Genre, blank=True, related_name='games')
     description = models.TextField(null=True, blank=True)
     release_year = models.IntegerField()
 

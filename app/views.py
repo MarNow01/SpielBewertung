@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Game, Review
+from .models import Game, Review, Genre
 from .forms import ReviewForm
 
 def mainpage(request):
@@ -14,21 +14,21 @@ def game_list(request):
     games = Game.objects.all()
 
     title = request.GET.get("title")
-    genre = request.GET.get("genre")
+    genre_id = request.GET.get("genres")
     year = request.GET.get("year")
 
     if title:
         games = games.filter(title__icontains=title)
 
-    if genre:
-        games = games.filter(genre__icontains=genre)
+    if genre_id:
+        games = games.filter(genres__id=genre_id)
 
     if year:
         games = games.filter(release_year=year)
 
     context = {
         "games": games,
-        "genres": Game.objects.values_list("genre", flat=True).distinct(),
+        "genres": Genre.objects.all(),
     }
 
     return render(request, "games/game_list.html", context)
